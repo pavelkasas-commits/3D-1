@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-start mb-4">
+    <div>
+        <h1 class="h3 mb-1">{{ task.title }}</h1>
+        <p class="text-muted mb-0">Sukurta {{ task.creat_at|date:"Y-m-d H:i" }}</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'task_update' task.pk %}" class="btn btn-outline-secondary">Redaguoti</a>
+        <a href="{% url 'task_delete' task.pk %}" class="btn btn-outline-danger">Trinti</a>
+    </div>
+</div>
+
+<div class="border rounded p-3 bg-white">
+    {% if task.content %}
+        {{ task.content|safe }}
+    {% else %}
+        Aprašymo nėra.
+    {% endif %}
+</div>
+{% endblock %}

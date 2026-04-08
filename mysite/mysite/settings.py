@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'lprinter',
+    'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,3 +117,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 420,
+    "menubar": False,
+    "plugins": "advlist autolink lists link charmap preview searchreplace visualblocks code fullscreen insertdatetime table help wordcount",
+    "toolbar": "undo redo | blocks | bold italic underline | bullist numlist | link table | removeformat | code fullscreen",
+    "branding": False,
+}
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
