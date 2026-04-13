@@ -7,6 +7,10 @@
     <div>
         <h1 class="h3 mb-1">{{ task.title }}</h1>
         <p class="text-muted mb-0">Sukurta {{ task.creat_at|date:"Y-m-d H:i" }}</p>
+        <p class="text-muted mb-0">Statusas: {{ task.get_status_display }}</p>
+        {% if request.user.is_superuser %}
+        <p class="text-muted mb-0">Priskirta: {{ task.user.username|default:"-" }}</p>
+        {% endif %}
     </div>
     <div class="d-flex gap-2">
         <a href="{% url 'task_update' task.pk %}" class="btn btn-outline-secondary">Redaguoti</a>
@@ -18,7 +22,7 @@
     {% if task.content %}
         {{ task.content|safe }}
     {% else %}
-        Aprašymo nėra.
+        Aprasymo nera.
     {% endif %}
 </div>
 {% endblock %}

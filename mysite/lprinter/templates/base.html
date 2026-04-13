@@ -26,7 +26,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container-fluid px-4">
-            <a class="navbar-brand" href="{% url 'task_list' %}">Užduočių darbai</a>
+            <a class="navbar-brand" href="{% url 'task_list' %}">Pagrindinis puslapis</a>
         </div>
     </nav>
 
@@ -36,27 +36,24 @@
                 <div class="card border-0 shadow-sm bg-dark text-white">
                     <div class="card-body">
                         <div class="rounded p-3 mb-4 border border-secondary">
-                            <h6 class="text-uppercase small mb-3">Paskyra</h6>
+                            <h6 class="text-uppercase small mb-3">Vartotojas</h6>
                             {% if user.is_authenticated %}
                                 <p class="small mb-2">Prisijungęs: {{ user.username }}</p>
                                 <form method="post" action="{% url 'logout' %}" class="m-0">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-outline-light btn-sm w-100">Atsijungti</button>
                                 </form>
-                            {% else %}
-
-                                <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm w-100">Prisijungti</a>
-                                <a href="{% url 'signup' %}" class="btn btn-outline-light btn-sm w-100">Registracija</a>
-
                             {% endif %}
                         </div>
 
+
                         <h5 class="card-title mb-3">Meniu</h5>
                         <div class="list-group list-group-flush">
-                            <a class="list-group-item list-group-item-action bg-dark text-white border-secondary" href="{% url 'task_list' %}">Visos užduotys</a>
+                            <a class="list-group-item list-group-item-action bg-dark text-white border-secondary" href="{% url 'task_list' %}">Mano užduotys</a>
                             <a class="list-group-item list-group-item-action bg-dark text-white border-secondary" href="{% url 'task_create' %}">Nauja užduotis</a>
                             {% if user.is_superuser %}
                                 <a class="list-group-item list-group-item-action bg-dark text-white border-secondary" href="/admin/">Admin only</a>
+                                <a class="list-group-item list-group-item-action bg-dark text-white border-secondary" href="{% url 'task_list' %}">Visos užduotys</a>
                             {% endif %}
                         </div>
 

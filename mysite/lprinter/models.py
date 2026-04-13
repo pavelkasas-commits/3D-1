@@ -9,7 +9,16 @@ class Task(models.Model):
     creat_at = models.DateTimeField(default=timezone.now, editable=False)
     content = models.TextField(blank=True, null=True)
 
+    STATUS_CHOICES = [
+        ("P","Priimtas"),
+        ("p","Pakibo"),
+        ("a","Atsauktas"), ]
+
+    status = models.CharField(choices=STATUS_CHOICES, default='')
+
     def __str__(self):
         return self.title
+
+
 
 

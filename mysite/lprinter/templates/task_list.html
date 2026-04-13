@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Užduočių sąrašas{% endblock %}
+{% block title %}Uzduociu sarasas{% endblock %}
 
 {% block content %}
 <div class="mb-4">
-    <h1 class="h3 mb-3">Mano užduotys</h1>
+    <h1 class="h3 mb-3">{% if request.user.is_superuser %}Visos uzduotys{% else %}Mano uzduotys{% endif %}</h1>
     <a href="{% url 'task_create' %}" class="btn btn-primary">
-        <i class="fa-solid fa-plus me-2"></i>Nauja užduotis
+        <i class="fa-solid fa-plus me-2"></i>Nauja uzduotis
     </a>
 </div>
 
@@ -16,8 +16,10 @@
             <thead>
                 <tr>
                     <th>Pavadinimas</th>
+                    {% if request.user.is_superuser %}<th>Vartotojas</th>{% endif %}
                     <th>Sukurta</th>
                     <th>Turinys</th>
+                    <th>Statusas</th>
                     <th class="text-end">Veiksmai</th>
                 </tr>
             </thead>
@@ -29,8 +31,23 @@
                                 {{ task.title }}
                             </a>
                         </td>
+                        {% if request.user.is_superuser %}
+                        <td>{{ task.user.username|default:"-" }}</td>
+                        {% endif %}
                         <td>{{ task.creat_at|date:"Y-m-d H:i" }}</td>
                         <td>{{ task.content|striptags|default:"-"|truncatechars:80 }}</td>
+                        <td>
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for value, label in task.STATUS_CHOICES %}
+                                    <form method="post" action="{% url 'task_status' task.pk value %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm {% if task.status == value %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                                            {{ label }}
+                                        </button>
+                                    </form>
+                                {% endfor %}
+                            </div>
+                        </td>
                         <td class="text-end">
                             <a href="{% url 'task_update' task.pk %}" class="btn btn-outline-secondary btn-sm">Redaguoti</a>
                             <a href="{% url 'task_delete' task.pk %}" class="btn btn-outline-danger btn-sm">Trinti</a>
@@ -42,9 +59,9 @@
     </div>
 {% else %}
     <div class="text-center py-5">
-        <h2 class="h5">Užduočių dar nėra</h2>
-        <p class="text-muted">Sukurk pirmą užduotį ir ji atsiras šiame sąraše.</p>
-        <a href="{% url 'task_create' %}" class="btn btn-primary">Kurti užduotį</a>
+        <h2 class="h5">Uzduociu dar nera</h2>
+        <p class="text-muted">{% if request.user.is_superuser %}Sukurk pirma uzduoti ir priskirk ja vartotojui.{% else %}Sukurk pirma uzduoti ir ji atsiras siame sarase.{% endif %}</p>
+        <a href="{% url 'task_create' %}" class="btn btn-primary">Kurti uzduoti</a>
     </div>
 {% endif %}
 {% endblock %}
