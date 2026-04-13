@@ -7,7 +7,7 @@ from .models import Task
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     form = TaskAdminForm
-    list_display = ("title", "user", "creat_at")
+    list_display = ("title", "user", "creat_at", "status" )
     search_fields = ("title", "content", "user__username")
 
 

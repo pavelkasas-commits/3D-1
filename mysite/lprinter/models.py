@@ -10,6 +10,7 @@ class Task(models.Model):
     content = models.TextField(blank=True, null=True)
 
     STATUS_CHOICES = [
+        ("s","Sukurtas"),
         ("P","Priimtas"),
         ("p","Pakibo"),
         ("a","Atsauktas"), ]
