@@ -12,6 +12,13 @@ from .forms import TaskForm
 from .models import Task
 
 
+
+
+
+
+
+
+
 class SignUpView(generic.CreateView):
     form_class = SignUpForm
     template_name = "registration/signup.html"
@@ -104,3 +111,6 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         if self.request.user.is_superuser:
             return Task.objects.select_related("user")
         return Task.objects.filter(user=self.request.user).select_related("user")
+
+
+

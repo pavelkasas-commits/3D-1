@@ -10,15 +10,23 @@ class Task(models.Model):
     content = models.TextField(blank=True, null=True)
 
     STATUS_CHOICES = [
-        ("s","Sukurtas"),
-        ("P","Priimtas"),
-        ("p","Pakibo"),
-        ("a","Atsauktas"), ]
+        ("u","Užregistruota"),
+        ("P","Patvirtinta"),
+        ("A","Atliktas"),
+        ("a","Atšaukta"), ]
 
     status = models.CharField(choices=STATUS_CHOICES, default='')
 
     def __str__(self):
         return self.title
+
+
+# class Sandelis(models.Model):
+#     pavadinimas = models.CharFIeld
+#
+
+
+
 
 
 
