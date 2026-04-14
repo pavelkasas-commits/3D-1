@@ -7,3 +7,4 @@ urlpatterns = [
     path('', include('lprinter.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
