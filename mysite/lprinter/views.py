@@ -12,8 +12,14 @@ from .forms import TaskForm
 from .models import Task
 
 
-class HomeView(TemplateView):
-    template_name = "index.html"
+
+
+
+
+
+
+
+
 
 
 class SignUpView(generic.CreateView):
@@ -109,3 +115,6 @@ def update_task_status(request, pk, status):
     task.status = status
     task.save(update_fields=["status"])
     return redirect("task_list")
+
+class HomeView(TemplateView):
+    template_name = "index.html"

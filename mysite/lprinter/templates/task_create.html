@@ -6,8 +6,10 @@
     {{ form.media }}
 {% endblock %}
 
+
 {% block content %}
 <h1 class="h3 mb-4">{% if form.instance.pk %}Redaguoti uzduoti{% else %}Nauja uzduotis{% endif %}</h1>
+
 
 <form method="post" class="row g-3">
     {% csrf_token %}
@@ -16,15 +18,18 @@
         {{ form.title }}
     </div>
 
+
     <div class="col-12">
         <label for="{{ form.content.id_for_label }}" class="form-label">Aprasymas</label>
         {{ form.content }}
     </div>
 
+
     <div class="col-md-6">
         <label for="{{ form.status.id_for_label }}" class="form-label">Statusas</label>
         {{ form.status }}
     </div>
+
 
     {% if form.user %}
     <div class="col-md-6">
@@ -32,6 +37,7 @@
         {{ form.user }}
     </div>
     {% endif %}
+
 
     <div class="col-12 d-flex gap-2">
         <button type="submit" class="btn btn-primary">Issaugoti</button>

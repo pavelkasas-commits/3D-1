@@ -51,7 +51,7 @@ class Filamentai(models.Model):
         status = models.CharField(choices=statusas, blank=True, null=True,)
 
         atvaziavo_kg = models.FloatField(blank=True, null=True,)
-        # sunaudota_kg = models.FloatField(default=0)
+        sunaudota_kg = models.FloatField(default=0)
         kaina = models.DecimalField(max_digits=1000, decimal_places=2)
 
         sandelis = models.ForeignKey(Sandelis, on_delete=models.CASCADE, related_name="filamentai")
