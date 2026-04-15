@@ -2,6 +2,10 @@
 
 {% block title %}{% if form.instance.pk %}Redaguoti uzduoti{% else %}Nauja uzduotis{% endif %}{% endblock %}
 
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
 {% block content %}
 <h1 class="h3 mb-4">{% if form.instance.pk %}Redaguoti uzduoti{% else %}Nauja uzduotis{% endif %}</h1>
 

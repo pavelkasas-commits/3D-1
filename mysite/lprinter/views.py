@@ -19,27 +19,16 @@ from .models import Task
 
 
 
+
+
+
+
+
+
 class SignUpView(generic.CreateView):
     form_class = SignUpForm
     template_name = "registration/signup.html"
     success_url = reverse_lazy("login")
-
-
-@login_required
-@require_POST
-def update_task_status(request, pk, status):
-    if request.user.is_superuser:
-        task = get_object_or_404(Task, pk=pk)
-    else:
-        task = get_object_or_404(Task, pk=pk, user=request.user)
-    valid_statuses = {choice[0] for choice in Task.STATUS_CHOICES}
-
-    if status not in valid_statuses:
-        return HttpResponseBadRequest("Error")
-
-    task.status = status
-    task.save(update_fields=["status"])
-    return redirect("task_list")
 
 
 
@@ -114,3 +103,18 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
 
 
 
+@login_required
+@require_POST
+def update_task_status(request, pk, status):
+    if request.user.is_superuser:
+        task = get_object_or_404(Task, pk=pk)
+    else:
+        task = get_object_or_404(Task, pk=pk, user=request.user)
+    valid_statuses = {choice[0] for choice in Task.STATUS_CHOICES}
+
+    if status not in valid_statuses:
+        return HttpResponseBadRequest("Error")
+
+    task.status = status
+    task.save(update_fields=["status"])
+    return redirect("task_list")

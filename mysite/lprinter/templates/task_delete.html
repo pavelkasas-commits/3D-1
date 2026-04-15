@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Trinti užduotį{% endblock %}
+{% block title %}Trinti uzduoti{% endblock %}
 
 {% block content %}
-<h1 class="h3 mb-3">Trinti užduotį</h1>
-<p>Ar tikrai nori ištrinti užduotį <strong>{{ task.title }}</strong>?</p>
+<h1 class="h3 mb-3">Trinti uzduoti</h1>
+<p>Ar tikrai nori istrinti uzduoti <strong>{{ task.title }}</strong>?</p>
 
 <form method="post" class="d-flex gap-2">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Ištrinti</button>
-    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">Atšaukti</a>
+    <button type="submit" class="btn btn-danger">Istrinti</button>
+    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">Atsaukti</a>
 </form>
 {% endblock %}

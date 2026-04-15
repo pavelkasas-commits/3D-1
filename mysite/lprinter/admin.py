@@ -11,7 +11,7 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 class FilamentaiAdmin(admin.ModelAdmin):
-    list_display = ("pavadinimas", "medziaga", "spalva", "atvaziavo_kg", "sunaudota_kg", "kaina")
+    list_display = ("uzsakymas", "sandelis",  "medziaga", "spalva", "atvaziavo_kg", "status", "kaina")
 
 
 class SandelisAdmin(admin.ModelAdmin):

@@ -18,7 +18,7 @@
                     <th>Pavadinimas</th>
                     {% if request.user.is_superuser %}<th>Vartotojas</th>{% endif %}
                     <th>Sukurta</th>
-                    <th>Aprašymas</th>
+                    <th>Aprasymas</th>
                     <th>Statusas</th>
                     <th class="text-end">Veiksmai</th>
                 </tr>
@@ -60,7 +60,7 @@
 {% else %}
     <div class="text-center py-5">
         <h2 class="h5">Uzduociu dar nera</h2>
-        <p class="text-muted">{% if request.user.is_superuser %}Sukurk pirma uzduoti ir priskirk ja vartotojui.{% else %}Sukurk pirma uzduoti ir ji atsiras siame sarase.{% endif %}</p>
+        <p class="text-muted">Sukurk pirma uzduoti </p>
         <a href="{% url 'task_create' %}" class="btn btn-primary">Kurti uzduoti</a>
     </div>
 {% endif %}

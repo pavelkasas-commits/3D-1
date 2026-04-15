@@ -121,32 +121,30 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'height': 360,
-    'width': 1120,
+    'height': 560,
+    'width': 900,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
     'plugins': '''
             textcolor save link image media preview codesample contextmenu
-            table code lists fullscreen  insertdatetime  nonbreaking
+            table code lists fullscreen insertdatetime nonbreaking
             contextmenu directionality searchreplace wordcount visualblocks
-            visualchars code fullscreen autolink lists  charmap print  hr
+            visualchars code fullscreen autolink lists charmap print hr
             anchor pagebreak
             ''',
     'toolbar1': '''
             fullscreen preview bold italic underline | fontselect,
-            fontsizeselect  | forecolor backcolor | alignleft alignright |
+            fontsizeselect | forecolor backcolor | alignleft alignright |
             aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | codesample |
+            link image media | codesample
             ''',
-    'toolbar2': '''
-            visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor |  code |
-            ''',
+    'toolbar2': '',
     'contextmenu': 'formats | link image',
-    'menubar': True,
-    'statusbar': True,
-    }
+    'menubar': False,
+    'statusbar': False,
+    'branding': False,
+}
 
 
 LOGIN_REDIRECT_URL = '/'
