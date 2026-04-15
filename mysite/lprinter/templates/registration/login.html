@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Prisijungimas{% endblock %}
+
+{% block extra_head %}
+<style>
+    .auth-form input {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border: 1px solid #ced4da;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+    }
+
+    .auth-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <h1 class="h3 mb-4 text-center">Prisijungimas</h1>
+
+        <form method="post" class="card border-0 shadow-sm auth-form">
+            <div class="card-body p-4">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}">Vartotojo vardas</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.password.id_for_label }}">Slaptažodis</label>
+                    {{ form.password }}
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Prisijungti</button>
+                    <a href="{% url 'signup' %}" class="btn btn-primary">Registracija</a>
+                     <a href="{% url 'password_reset' %}" class="btn btn-primary">Pamiršote slaptažodį ?</a>
+                </div>
+                {% if next %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
