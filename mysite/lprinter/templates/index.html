@@ -1,1 +1,22 @@
---->Cia bus pagrindinis puslapis kai darysiu frontenda L pardotuves mano projekto<----- ......
+{% extends "base.html" %}
+
+{% block title %}Pagrindinis puslapis{% endblock %}
+
+{% block content %}
+<div class="py-4">
+    <h1 class="display-6 fw-semibold mb-3">3D užduočių sandėlio sistema – testinė versija</h1>
+    <p class="lead mb-4"></p>
+
+    {% if user.is_authenticated %}
+        <div class="d-flex gap-3 flex-wrap">
+            <a href="{% url 'task_list' %}" class="btn btn-primary btn-lg">Atidaryti uzduotis</a>
+            <a href="{% url 'task_create' %}" class="btn btn-outline-primary btn-lg">Sukurti uzduoti</a>
+        </div>
+    {% else %}
+        <div class="d-flex gap-3 flex-wrap">
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Prisijungti</a>
+            <a href="{% url 'signup' %}" class="btn btn-outline-primary btn-lg">Registruotis</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

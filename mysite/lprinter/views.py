@@ -4,7 +4,7 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView
 from django.views.decorators.http import require_POST
 
 from .forms import SignUpForm
@@ -12,17 +12,8 @@ from .forms import TaskForm
 from .models import Task
 
 
-
-
-
-
-
-
-
-
-
-
-
+class HomeView(TemplateView):
+    template_name = "index.html"
 
 
 class SignUpView(generic.CreateView):
